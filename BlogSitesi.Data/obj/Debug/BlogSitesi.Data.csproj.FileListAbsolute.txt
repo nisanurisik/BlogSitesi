@@ -1,0 +1,17 @@
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\bin\Debug\BlogSitesi.Data.dll.config
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\bin\Debug\BlogSitesi.Data.dll
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\bin\Debug\BlogSitesi.Data.pdb
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\bin\Debug\BlogSitesi.Data.Model.dll
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\bin\Debug\EntityFramework.dll
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\bin\Debug\BlogSitesi.Data.Model.pdb
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\bin\Debug\BlogSitesi.Data.Model.dll.config
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\bin\Debug\EntityFramework.xml
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\obj\Debug\BlogSitesi.Data.csproj.AssemblyReference.cache
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\obj\Debug\BlogSitesi.Data.csproj.CoreCompileInputs.cache
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\obj\Debug\BlogSitesi.Data.csproj.CopyComplete
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\obj\Debug\BlogSitesi.Data.dll
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\obj\Debug\BlogSitesi.Data.pdb
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\obj\Debug\BlogSitesi.Data.Migrations.InitialCreate.resources
+C:\Users\dell\Desktop\BlogSitesi\BlogSitesi.Data\obj\Debug\BlogSitesi.Data.csproj.GenerateResource.cache

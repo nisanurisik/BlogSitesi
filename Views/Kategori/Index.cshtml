@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Kategoriler";
+}
+
+@using BlogSitesi.Data.Model;
+@model List<Kategori>
+
+<h2>KATEGORİLER</h2>
+
+<table id="example" class="display" style="width:100%">
+    <thead>
+        <tr>
+            
+            <th>Kategori Adı</th>
+            <th>Güncelle</th>
+            <th>Sil</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var ktg in Model)
+        {
+            <tr>
+                <td>@ktg.KategoriAd</td>
+                <td><button class="guncelle btn btn-custom" value="@ktg.KategoriId" style="background-color: #405D72; color: white; border: none;">Güncelle</button></td>
+                <td><button class="sil btn btn-danger" value="@ktg.KategoriId" style="background-color: red; color: white; border: none;">Sil</button></td>
+            </tr>
+        }
+    </tbody>
+
+
+    <tfoot>
+        <tr>
+            
+            <th>Kategori Adı</th>
+        </tr>
+    </tfoot>
+</table>
+
