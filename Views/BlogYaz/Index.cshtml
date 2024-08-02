@@ -31,10 +31,10 @@
                                 <div class="col-sm-12">
                                     <div class="input-group">
                                         <select id="kullanicilar" class="form-control" name="kullanicilar">
-                                            @foreach (var kullanici in Model.Kullanicilar)
-                                            {
-                                                <option value="@kullanici.KullaniciId">@kullanici.KullaniciAd</option>
-                                            }
+                                            @*@foreach (var kullanici in Model.Kullanicilar)
+                                            {*@
+                                                <option value="@Request.Cookies["kullanici"]["KullaniciId"]">@Request.Cookies["kullanici"]["KullaniciAdi"]</option>
+                                            @*}*@
                                         </select>
                                         <span class="input-group-btn">
                                             <input type="button" id="kullaniciSec" class="btn btn-info" style="background-color: #405D72" value="Seç" />
@@ -89,7 +89,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="button" id="blogKaydet" style="background-color: #405D72" value="Kaydet" />
+                            <input type="button" id="blogKaydet" style="background-color: #405D72; color: white;" value="Kaydet" />
                         </form>
                     </div>
                 </div>

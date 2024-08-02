@@ -133,6 +133,7 @@
     <Content Include="Content\Css\sweetalert2.min.css" />
     <Content Include="Content\Images\2.png" />
     <Content Include="Content\Images\1.png" />
+    <Content Include="Content\Images\login-register.jpg" />
     <Content Include="Content\Images\User_Avatar.png" />
     <Content Include="Content\less\icons\font-awesome\.gitignore" />
     <Content Include="Content\less\icons\font-awesome\css\font-awesome.css" />
@@ -198,6 +199,7 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\BlogYazController.cs" />
     <Compile Include="Controllers\KategoriController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -371,6 +373,7 @@
     <Content Include="Views\Blog\Index.cshtml" />
     <Content Include="Views\Blog\BlogSil.cshtml" />
     <Content Include="Views\BlogYaz\Index.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

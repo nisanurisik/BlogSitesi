@@ -302,3 +302,46 @@ $(document).on("click", "#blogKaydet", function () {
     });
 });
 
+$(document).on("click", "#giris", function () {
+    $(this).html("Kontrol Ediliyor...");
+    $(this).prop("disabled", true);
+
+    var degerler = {
+        email: $("#email").val(),
+        sifre: $("#sifre").val(),
+        hatirla: false
+    };
+
+    if ($("#checkbox-signup").is(":checked")) {
+        degerler.hatirla = true;
+    }
+
+    $.ajax({
+        type: 'Post',
+        url: '/Login/GirisKontrol',
+        data: JSON.stringify(degerler),
+        dataType: 'Json',
+        contentType: 'application/json;charset=utf-8',
+        success: function (gelenDeg) {
+            console.log(gelenDeg); // Geri dönen cevabı kontrol edin
+            if (gelenDeg == "Başarılı") {
+                Swal.fire({ icon: "success", title: "Giriş Başarılı", text: "Yönlendiriliyorsunuz..." });
+                window.location.href = '/Blog/Index';
+            }
+            else if (gelenDeg == "BosOlamaz") {
+                Swal.fire({ icon: "error", title: "Giriş Başarısız", text: "Gerekli Alanları Doldurun..." });
+            }
+            else {
+                Swal.fire({ icon: "error", title: "Giriş Başarısız", text: "Hata..." });
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error(xhr.responseText); // Hata mesajını kontrol edin
+            Swal.fire({ icon: "error", title: "HATA", text: "Hata..." });
+        },
+        complete: function () {
+            $("#giris").html("Giriş Yap");
+            $("#giris").prop("disabled", false);
+        }
+    });
+});
