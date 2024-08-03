@@ -345,3 +345,54 @@ $(document).on("click", "#giris", function () {
         }
     });
 });
+
+
+
+
+$(document).ready(function () {
+    $(".category-list").click(function (e) {
+        e.preventDefault();
+        var categoryId = $(this).data("id");
+
+        $.ajax({
+            url: '/Home/KategoriListele',
+            type: 'GET',
+            data: { categoryId: categoryId },
+            dataType: 'json',
+            success: function (data) {
+                console.log("Data received:", data);
+                var blogList = $("#blogList");
+                blogList.empty();
+
+                $.each(data, function (index, blog) {
+                    var kategoriler = blog.Kategoriler.join(", ");
+                    var resimUrl = blog.BlogResim ? blog.BlogResim : '';
+
+                    var blogHtml = `
+                        <div class="col-md-12">
+                            <div class="white-box blog-box">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        ${resimUrl ? `<img style="max-width: 100%; height: 200px; object-fit: cover;" src="${resimUrl}" alt="Blog Resmi" />` : '<p>Resim bulunamadı.</p>'}
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <h3 class="box-title">${blog.BlogAd}</h3>
+                                        <p>${blog.BlogMetin}</p>
+                                        <p>Yazan: ${blog.KullaniciAd} ${blog.KullaniciSoyad}</p>
+                                         <p>Blog Yayınlanma Tarihi: ${blog.BlogYazilmaTarihi}</p>
+                                        <p style="border: 2px solid #405D72; padding: 5px; display: inline-block; background-color: #405D72; color:antiquewhite">${kategoriler}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`;
+                    blogList.append(blogHtml);
+                });
+            },
+            error: function (xhr, status, error) {
+                console.error("An error occurred while fetching blogs:", xhr.responseText, "Status:", status, "Error:", error);
+                alert("An error occurred while fetching blogs: " + xhr.responseText + "\nStatus: " + status + "\nError: " + error);
+            }
+        });
+    });
+});
+

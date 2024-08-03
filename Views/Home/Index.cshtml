@@ -1,0 +1,278 @@
+﻿@using BlogSitesi.Data.Model
+@model BlogSitesi.ViewModels.BlogKategoriViewModel
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/Css/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/sidebar-nav.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/jquery-jvectormap-2.0.2.css" rel="stylesheet" />
+    <link href="~/Content/Css/css-chart.css" rel="stylesheet" />
+    <link href="~/Content/Css/animate.css" rel="stylesheet" />
+    <link href="~/Content/Css/style.css" rel="stylesheet" />
+    <link href="~/Content/Css/blue.css" rel="stylesheet" />
+    <link href="~/Content/Css/datatables.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/sweetalert2.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/owl.carousel.min.css" rel="stylesheet" />
+    <link href="~/Content/Css/owl.theme.default.css" rel="stylesheet" />
+    <style>
+        tfoot input {
+            width: 100%;
+            padding: 3px;
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="preloader">
+        <div class="cssload-speeding-wheel"></div>
+    </div>
+    <div id="wrapper">
+        <nav class="navbar navbar-default navbar-static-top m-b-0">
+            <div class="navbar-header">
+                <a class="navbar-toggle hidden-sm hidden-md hidden-lg"
+                   href="javascript:void(0)"
+                   data-toggle="collapse"
+                   data-target=".navbar-collapse">
+                    <i class="ti-menu"></i>
+                </a>
+                <div class="top-left-part">
+                    <a class="logo" href="#">
+                        <b>
+                            <img src="~/Content/Images/2.png" />
+                        </b>
+                        <span class="hidden-xs">
+                            <img src="~/Content/Images/1.png" />
+                        </span>
+                    </a>
+                </div>
+                <ul class="nav navbar-top-links navbar-left hidden-xs">
+                    <li>
+                        <a href="javascript:void(0)"
+                           class="open-close hidden-xs waves-effect waves-light">
+                            <i class="icon-arrow-left-circle ti-menu"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <form role="search" class="app-search hidden-xs">
+                            <input type="text"
+                                   placeholder="Ara..."
+                                   class="form-control" />
+                            <a href=""><i class="fa fa-search"></i></a>
+                        </form>
+                    </li>
+                </ul>
+                <ul class="nav navbar-top-links navbar-right pull-right">
+                    <li class="user-pro">
+                        <a href="@Url.Action("Index", "Login")" class="waves-effect" style="color: #F7E7DC;">
+                            <i class="fa fa-sign-in" aria-hidden="true"></i>
+                            Giriş Yap
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="navbar-default sidebar" role="navigation">
+            <div class="sidebar-nav navbar-collapse slimscrollsidebar">
+                <ul class="nav" id="side-menu">
+                    <li class="sidebar-search hidden-sm hidden-md hidden-lg">
+                        <div class="input-group custom-search-form">
+                            <input type="text"
+                                   class="form-control"
+                                   placeholder="Search..." />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </span>
+                        </div>
+                    </li>
+
+                    <li class="nav-small-cap m-t-10">Menü</li>
+
+                    <li>
+                        <a href="@Url.Action("Index", "Login")" class="waves-effect">
+                            <i class="fa fa-keyboard-o" aria-hidden="true"></i>
+                            <span class="hide-menu">
+                                Blog Yaz
+                            </span>
+                        </a>
+                    </li>
+
+
+                </ul>
+            </div>
+        </div>
+        <div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Kelimelerin Gücü</h4>
+                    </div>
+                </div>
+                @*<div class="row white-box">@RenderBody()</div>*@
+                <style>
+                    .blog-box {
+                        margin-bottom: 20px;
+                        padding: 15px;
+                        border: 1px solid #e0e0e0;
+                        border-radius: 5px;
+                        background-color: #fff;
+                        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+                    }
+
+                    .dropdown-menu {
+                        width: 100%;
+                    }
+
+                    .btn-group {
+                        width: 100%;
+                    }
+
+                    .d-flex {
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .ml-3 {
+                        margin-left: 1rem;
+                    }
+
+                    .mt-4 {
+                        margin-top: 1.5rem;
+                    }
+                </style>
+                <div class="row">
+                    <div class="col-md-12 d-flex align-items-center">
+                        <h2><b>Bloglar</b></h2>
+
+                        <div class="btn-group m-r-10 ml-3">
+                            <button aria-expanded="false" data-toggle="dropdown" class="btn btn-info dropdown-toggle waves-effect waves-light" style="background-color: #405D72; color: #F7E7DC;" type="button">Kategoriler <span class="caret"></span></button>
+                            <ul class="dropdown-menu">
+                                @foreach (var ktg in Model.Kategoriler)
+                                {
+                                    <li><a href="#" class="category-list" data-id="@ktg.KategoriId">@ktg.KategoriAd</a></li>
+                                }
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="row mt-4" id="blogList">
+                    @foreach (var blog in Model.Bloglar)
+                    {
+                        <div class="col-md-12">
+                            <div class="white-box blog-box">
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        @if (!string.IsNullOrEmpty(blog.BlogResim))
+                                        {
+                                            <img style="max-width: 100%; height: 200px; object-fit: cover; " src="@Url.Content(blog.BlogResim)" alt="Blog Resmi" />
+                                        }
+                                        else
+                                        {
+                                            <p>Resim bulunamadı.</p>
+                                        }
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <h3 class="box-title">@blog.BlogAd</h3>
+                                        <p>@blog.BlogMetin</p>
+                                        <p>Yazan: @blog.Kullanici.KullaniciAd @blog.Kullanici.KullaniciSoyad</p>
+
+                                        <p>Blog Yayınlanma Tarihi: @blog.BlogYazilmaTarihi.ToString("dd MMM yyyy")</p>
+                                        <p style="border: 2px solid #405D72; padding: 5px; display: inline-block; background-color: #405D72; color:antiquewhite">
+                                            @{
+                                                var kategoriler = string.Join(", ", blog.Kategoriler.Select(k => k.KategoriAd));
+                                            }
+                                            @kategoriler
+                                        </p>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+
+
+            </div>
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="~/Scripts/jquery.min.js"></script>
+        <script src="~/Scripts/bootstrap.min.js"></script>
+        <script src="~/Scripts/sidebar-nav.min.js"></script>
+        <script src="~/Scripts/jquery.slimscroll.js"></script>
+        <script src="~/Scripts/waves.js"></script>
+        <script src="~/Scripts/jquery.flot.js"></script>
+        <script src="~/Scripts/jquery.flot.tooltip.min.js"></script>
+        <script src="~/Scripts/jquery-jvectormap-2.0.2.min.js"></script>
+        <script src="~/Scripts/jquery-jvectormap-world-mill-en.js"></script>
+        <script src="~/Scripts/jquery.sparkline.min.js"></script>
+        <script src="~/Scripts/jquery.easypiechart.min.js"></script>
+        <script src="~/Scripts/easy-pie-chart.init.js"></script>
+        <script src="~/Scripts/custom.js"></script>
+        <script src="~/Scripts/dashboard2.js"></script>
+        <script src="~/Scripts/jQuery.style.switcher.js"></script>
+        <script src="~/Scripts/datatables.min.js"></script>
+        <script src="~/Scripts/sweetalert2.min.js"></script>
+        <script src="~/Scripts/Main.js"></script>
+        <script src="~/Scripts/owl.carousel.min.js"></script>
+        <script src="~/Scripts/owl.custom.js"></script>
+
+
+        <script>
+            new DataTable('#example', {
+                initComplete: function () {
+                    this.api()
+                        .columns()
+                        .every(function () {
+                            let column = this;
+                            let title = column.footer().textContent;
+
+                            let input = document.createElement('input');
+                            input.placeholder = title;
+                            column.footer().replaceChildren(input);
+
+                            input.addEventListener('keyup', () => {
+                                if (column.search() !== this.value) {
+                                    column.search(input.value).draw();
+                                }
+                            });
+                        });
+                }
+            });
+        </script>
+        <script type="text/javascript">
+            $('#slimtest1').slimScroll({
+                height: '250px'
+            });
+            $('#slimtest2').slimScroll({
+                height: '250px'
+            });
+            $('#slimtest3').slimScroll({
+                position: 'left',
+                height: '250px',
+                railVisible: true,
+                alwaysVisible: true
+            });
+            $('#slimtest4').slimScroll({
+                color: '#00f',
+                size: '10px',
+                height: '250px',
+                alwaysVisible: true
+            });
+        </script>
+    </div>
+</body>
+</html>
