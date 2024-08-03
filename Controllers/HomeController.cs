@@ -53,6 +53,33 @@ namespace BlogSitesi.Controllers
 
             return Json(blogs, JsonRequestBehavior.AllowGet);
         }
+        public ActionResult Search(string searchTerm)
+        {
+            if (string.IsNullOrEmpty(searchTerm))
+            {
+                return RedirectToAction("Index");
+            }
 
+            var blogRepository = unitOfWork.GetRepository<Blog>();
+            var kategoriRepository = unitOfWork.GetRepository<Kategori>();
+            var kullaniciRepository = unitOfWork.GetRepository<Kullanici>();
+
+            var blogs = blogRepository.GetAll()
+                                .Where(b => b.BlogAd.Contains(searchTerm)
+                                         || b.BlogMetin.Contains(searchTerm)
+                                         || b.Kullanici.KullaniciAd.Contains(searchTerm)
+                                         || b.Kullanici.KullaniciSoyad.Contains(searchTerm)
+                                         || (string.Concat(b.Kullanici.KullaniciAd, " ", b.Kullanici.KullaniciSoyad).Contains(searchTerm)))
+                                .ToList();
+
+            var viewModel = new BlogKategoriViewModel
+            {
+                Bloglar = blogs,
+                Kategoriler = kategoriRepository.GetAll().ToList(),
+                Kullanicilar = kullaniciRepository.GetAll().ToList()
+            };
+
+            return View("Index", viewModel);
+        }
     }
 }

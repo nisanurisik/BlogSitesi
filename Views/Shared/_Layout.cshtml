@@ -33,247 +33,265 @@
     {
         var kullaniciAdi = Request.Cookies["kullanici"]["KullaniciAdi"];
         var kullaniciSoyadi = Request.Cookies["kullanici"]["KullaniciSoyadi"];
-    <div class="preloader">
-        <div class="cssload-speeding-wheel"></div>
-    </div>
-    <div id="wrapper">
-        <nav class="navbar navbar-default navbar-static-top m-b-0">
-            <div class="navbar-header">
-                <a class="navbar-toggle hidden-sm hidden-md hidden-lg"
-                   href="javascript:void(0)"
-                   data-toggle="collapse"
-                   data-target=".navbar-collapse">
-                    <i class="ti-menu"></i>
-                </a>
-                <div class="top-left-part">
-                    <a class="logo" href="#">
-                        <b>
-                            <img src="~/Content/Images/2.png" />
-                        </b>
-                        <span class="hidden-xs">
-                            <img src="~/Content/Images/1.png" />
-                        </span>
+        var kullaniciID = Request.Cookies["kullanici"]["KullaniciId"]; // Kullanıcı ID'sini alın
+        <div class="preloader">
+            <div class="cssload-speeding-wheel"></div>
+        </div>
+        <div id="wrapper">
+            <nav class="navbar navbar-default navbar-static-top m-b-0">
+                <div class="navbar-header">
+                    <a class="navbar-toggle hidden-sm hidden-md hidden-lg"
+                       href="javascript:void(0)"
+                       data-toggle="collapse"
+                       data-target=".navbar-collapse">
+                        <i class="ti-menu"></i>
                     </a>
-                </div>
-                <ul class="nav navbar-top-links navbar-left hidden-xs">
-                    <li>
-                        <a href="javascript:void(0)"
-                           class="open-close hidden-xs waves-effect waves-light">
-                            <i class="icon-arrow-left-circle ti-menu"></i>
+                    <div class="top-left-part">
+                        <a class="logo" href="#">
+                            <b>
+                                <img src="~/Content/Images/2.png" />
+                            </b>
+                            <span class="hidden-xs">
+                                <img src="~/Content/Images/1.png" />
+                            </span>
                         </a>
-                    </li>
-                    <li>
-                        <form role="search" class="app-search hidden-xs">
-                            <input type="text"
-                                   placeholder="Ara..."
-                                   class="form-control" />
-                            <a href=""><i class="fa fa-search"></i></a>
-                        </form>
-                    </li>
-                </ul>
-                <ul class="nav navbar-top-links navbar-right pull-right">
-                    <li class="dropdown">
-                        <a class="dropdown-toggle profile-pic"
-                           data-toggle="dropdown"
-                           href="#">
-                            <img src="~/Content/Images/User_Avatar.png"
-                                 alt="user-img"
-                                 width="36"
-                                 class="img-circle" /><b class="hidden-xs">@Request.Cookies["kullanici"]["KullaniciAdi"]</b>
+                    </div>
+                    <ul class="nav navbar-top-links navbar-left hidden-xs">
+                        <li>
+                            <a href="javascript:void(0)"
+                               class="open-close hidden-xs waves-effect waves-light">
+                                <i class="icon-arrow-left-circle ti-menu"></i>
                             </a>
-                            <ul class="dropdown-menu dropdown-user animated flipInY">
-                                <li>
-                                    <a href="#"><i class="ti-user"></i>Profilim</a>
-                                </li>
+                        </li>
+                        <li>
+                            <form role="search" class="app-search hidden-xs" action="@Url.Action("Search", "Blog")" method="get">
+                                <input type="text" name="searchTerm" placeholder="Ara..." class="form-control" />
+                                <a href="javascript:void(0)" onclick="$(this).closest('form').submit();"><i class="fa fa-search"></i></a>
+                            </form>
 
-                                <li>
-                                    <a href="@Url.Action("CikisYap", "Login")"><i class="fa fa-power-off"></i> Çıkış</a>
-                                </li>
-                            </ul>
                         </li>
                     </ul>
-                </div>
-            </nav>
-
-            <div class="navbar-default sidebar" role="navigation">
-                <div class="sidebar-nav navbar-collapse slimscrollsidebar">
-                    <ul class="nav" id="side-menu">
-                        <li class="sidebar-search hidden-sm hidden-md hidden-lg">
-                            <div class="input-group custom-search-form">
-                                <input type="text"
-                                       class="form-control"
-                                       placeholder="Search..." />
-                                <span class="input-group-btn">
-                                    <button class="btn btn-default" type="button">
-                                        <i class="fa fa-search"></i>
-                                    </button>
-                                </span>
-                            </div>
-                        </li>
-                        <li class="user-pro">
-                            <a href="index.html" class="waves-effect">
+                    <ul class="nav navbar-top-links navbar-right pull-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle profile-pic"
+                               data-toggle="dropdown"
+                               href="#">
                                 <img src="~/Content/Images/User_Avatar.png"
                                      alt="user-img"
-                                     class="img-circle" />
-                                <span class="hide-menu">
-                                    @Request.Cookies["kullanici"]["KullaniciAdi"] @Request.Cookies["kullanici"]["KullaniciSoyadi"]<span class="fa arrow"></span>
-                                </span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li>
-                                    <a href="javascript:void(0)"><i class="ti-user"></i>Profilim</a>
-                                </li>
+                                     width="36"
+                                     class="img-circle" /><b class="hidden-xs">@Request.Cookies["kullanici"]["KullaniciAdi"]</b>
+                                </a>
+                                <ul class="dropdown-menu dropdown-user animated flipInY">
+                                    <li>
+                                        <a href="#"><i class="ti-user"></i>Profilim</a>
+                                    </li>
 
-                                <li>
-                                    <a href="@Url.Action("CikisYap", "Login")"><i class="fa fa-power-off"></i> Çıkış Yap</a>
-                                </li>
-                            </ul>
-                        </li>
-                        <li class="nav-small-cap m-t-10">Menü</li>
-                        <li>
-                            <a href="@Url.Action("Index", "Blog")" class="waves-effect">
-                                <i class="fa fa-file-text-o" aria-hidden="true"></i>
-                                <span class="hide-menu">
-                                    Bloglar <span class="fa arrow"></span>
-                                </span>
-                            </a>
-
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index", "BlogYaz")" class="waves-effect">
-                                <i class="fa fa-keyboard-o" aria-hidden="true"></i>
-                                <span class="hide-menu">
-                                    Blog Yaz
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="index.html" class="waves-effect">
-                                <i class="fa fa-users" aria-hidden="true"></i>
-
-                                <span class="hide-menu">
-                                    Üye Düzenle <span class="fa arrow"></span>
-                                </span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li><a href="index.html">Listele</a></li>
-                                <li><a href="index3.html">Ekle</a></li>
-                                <li><a href="index3.html">Sil</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="index.html" class="waves-effect">
-                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-
-                                <span class="hide-menu">
-                                    Blog Düzenle <span class="fa arrow"></span>
-                                </span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li><a href="@Url.Action("Index", "Blog")">Listele</a></li>
-                                <li><a href="@Url.Action("BlogSil", "Blog")">Sil</a></li>
-                            </ul>
-                        </li>
-                        <li>
-                            <a href="inbox.html" class="waves-effect">
-                                <i class="fa fa-comment-o" aria-hidden="true"></i>
-                                <span class="hide-menu">
-                                    Yorum Düzenle
-                                </span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="forms.html" class="waves-effect">
-                                <i class="fa fa-list-ul" aria-hidden="true"></i>
-                                <span class="hide-menu">
-                                    Kategori Düzenle <span class="fa arrow"></span>
-                                </span>
-                            </a>
-                            <ul class="nav nav-second-level">
-                                <li><a href="@Url.Action("Index", "Kategori")">Listele</a></li>
-                                <li><a class="ktgEkle" href="javascript:void(0)">Ekle</a></li>
-
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div id="page-wrapper">
-                <div class="container-fluid">
-                    <div class="row bg-title">
-                        <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                            <h4 class="page-title">Kelimelerin Gücü</h4>
-                        </div>
+                                    <li>
+                                        <a href="@Url.Action("CikisYap", "Login")"><i class="fa fa-power-off"></i> Çıkış</a>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
                     </div>
-                    <div class="row white-box">@RenderBody()</div>
+                </nav>
 
+                <div class="navbar-default sidebar" role="navigation">
+                    <div class="sidebar-nav navbar-collapse slimscrollsidebar">
+                        <ul class="nav" id="side-menu">
+                            <li class="sidebar-search hidden-sm hidden-md hidden-lg">
+                                <div class="input-group custom-search-form">
+                                    <input type="text"
+                                           class="form-control"
+                                           placeholder="Search..." />
+                                    <span class="input-group-btn">
+                                        <button class="btn btn-default" type="button">
+                                            <i class="fa fa-search"></i>
+                                        </button>
+                                    </span>
+                                </div>
+                            </li>
+                            <li class="user-pro">
+                                <a href="index.html" class="waves-effect">
+                                    <img src="~/Content/Images/User_Avatar.png"
+                                         alt="user-img"
+                                         class="img-circle" />
+                                    <span class="hide-menu">
+                                        @Request.Cookies["kullanici"]["KullaniciAdi"] @Request.Cookies["kullanici"]["KullaniciSoyadi"]<span class="fa arrow"></span>
+                                    </span>
+                                </a>
+                                <ul class="nav nav-second-level">
+                                    <li>
+                                        <a href="javascript:void(0)"><i class="ti-user"></i>Profilim</a>
+                                    </li>
+
+                                    <li>
+                                        <a href="@Url.Action("CikisYap", "Login")"><i class="fa fa-power-off"></i> Çıkış Yap</a>
+                                    </li>
+                                </ul>
+                            </li>
+                            @if (kullaniciID == "1")
+                            {
+                                <li class="nav-small-cap m-t-10">Menü</li>
+                                <li>
+                                    <a href="@Url.Action("Index", "Blog")" class="waves-effect">
+                                        <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                        <span class="hide-menu">
+                                            Bloglar <span class="fa arrow"></span>
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="@Url.Action("Index", "BlogYaz")" class="waves-effect">
+                                        <i class="fa fa-keyboard-o" aria-hidden="true"></i>
+                                        <span class="hide-menu">
+                                            Blog Yaz
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index.html" class="waves-effect">
+                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                        <span class="hide-menu">
+                                            Üye Düzenle <span class="fa arrow"></span>
+                                        </span>
+                                    </a>
+                                    <ul class="nav nav-second-level">
+                                        <li><a href="index.html">Listele</a></li>
+                                        <li><a href="index3.html">Ekle</a></li>
+                                        <li><a href="index3.html">Sil</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="index.html" class="waves-effect">
+                                        <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                        <span class="hide-menu">
+                                            Blog Düzenle <span class="fa arrow"></span>
+                                        </span>
+                                    </a>
+                                    <ul class="nav nav-second-level">
+                                        <li><a href="@Url.Action("Index", "Blog")">Listele</a></li>
+                                        <li><a href="@Url.Action("BlogSil", "Blog")">Sil</a></li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="inbox.html" class="waves-effect">
+                                        <i class="fa fa-comment-o" aria-hidden="true"></i>
+                                        <span class="hide-menu">
+                                            Yorum Düzenle
+                                        </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="forms.html" class="waves-effect">
+                                        <i class="fa fa-list-ul" aria-hidden="true"></i>
+                                        <span class="hide-menu">
+                                            Kategori Düzenle <span class="fa arrow"></span>
+                                        </span>
+                                    </a>
+                                    <ul class="nav nav-second-level">
+                                        <li><a href="@Url.Action("Index", "Kategori")">Listele</a></li>
+                                        <li><a class="ktgEkle" href="javascript:void(0)">Ekle</a></li>
+                                    </ul>
+                                </li>
+                            }
+                            else
+                            {
+                            <li class="nav-small-cap m-t-10">Menü</li>
+                            <li>
+                                <a href="@Url.Action("Index", "Blog")" class="waves-effect">
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i>
+                                    <span class="hide-menu">
+                                        Bloglar <span class="fa arrow"></span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "BlogYaz")" class="waves-effect">
+                                    <i class="fa fa-keyboard-o" aria-hidden="true"></i>
+                                    <span class="hide-menu">
+                                        Blog Yaz
+                                    </span>
+                                </a>
+                            </li>
+                            }
+                        </ul>
+                    </div>
                 </div>
-            </div>
+                <div id="page-wrapper">
+                    <div class="container-fluid">
+                        <div class="row bg-title">
+                            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                                <h4 class="page-title">Kelimelerin Gücü</h4>
+                            </div>
+                        </div>
+                        <div class="row white-box">@RenderBody()</div>
+                    </div>
+                </div>
 
-            <script src="~/Scripts/jquery.min.js"></script>
-            <script src="~/Scripts/bootstrap.min.js"></script>
-            <script src="~/Scripts/sidebar-nav.min.js"></script>
-            <script src="~/Scripts/jquery.slimscroll.js"></script>
-            <script src="~/Scripts/waves.js"></script>
-            <script src="~/Scripts/jquery.flot.js"></script>
-            <script src="~/Scripts/jquery.flot.tooltip.min.js"></script>
-            <script src="~/Scripts/jquery-jvectormap-2.0.2.min.js"></script>
-            <script src="~/Scripts/jquery-jvectormap-world-mill-en.js"></script>
-            <script src="~/Scripts/jquery.sparkline.min.js"></script>
-            <script src="~/Scripts/jquery.easypiechart.min.js"></script>
-            <script src="~/Scripts/easy-pie-chart.init.js"></script>
-            <script src="~/Scripts/custom.js"></script>
-            <script src="~/Scripts/dashboard2.js"></script>
-            <script src="~/Scripts/jQuery.style.switcher.js"></script>
-            <script src="~/Scripts/datatables.min.js"></script>
-            <script src="~/Scripts/sweetalert2.min.js"></script>
-            <script src="~/Scripts/Main.js"></script>
-            <script src="~/Scripts/owl.carousel.min.js"></script>
-            <script src="~/Scripts/owl.custom.js"></script>
-            <script>
-                new DataTable('#example', {
-                    initComplete: function () {
-                        this.api()
-                            .columns()
-                            .every(function () {
-                                let column = this;
-                                let title = column.footer().textContent;
+                <script src="~/Scripts/jquery.min.js"></script>
+                <script src="~/Scripts/bootstrap.min.js"></script>
+                <script src="~/Scripts/sidebar-nav.min.js"></script>
+                <script src="~/Scripts/jquery.slimscroll.js"></script>
+                <script src="~/Scripts/waves.js"></script>
+                <script src="~/Scripts/jquery.flot.js"></script>
+                <script src="~/Scripts/jquery.flot.tooltip.min.js"></script>
+                <script src="~/Scripts/jquery-jvectormap-2.0.2.min.js"></script>
+                <script src="~/Scripts/jquery-jvectormap-world-mill-en.js"></script>
+                <script src="~/Scripts/jquery.sparkline.min.js"></script>
+                <script src="~/Scripts/jquery.easypiechart.min.js"></script>
+                <script src="~/Scripts/easy-pie-chart.init.js"></script>
+                <script src="~/Scripts/custom.js"></script>
+                <script src="~/Scripts/dashboard2.js"></script>
+                <script src="~/Scripts/jQuery.style.switcher.js"></script>
+                <script src="~/Scripts/datatables.min.js"></script>
+                <script src="~/Scripts/sweetalert2.min.js"></script>
+                <script src="~/Scripts/Main.js"></script>
+                <script src="~/Scripts/owl.carousel.min.js"></script>
+                <script src="~/Scripts/owl.custom.js"></script>
+                <script>
+                    new DataTable('#example', {
+                        initComplete: function () {
+                            this.api()
+                                .columns()
+                                .every(function () {
+                                    let column = this;
+                                    let title = column.footer().textContent;
 
-                                let input = document.createElement('input');
-                                input.placeholder = title;
-                                column.footer().replaceChildren(input);
+                                    let input = document.createElement('input');
+                                    input.placeholder = title;
+                                    column.footer().replaceChildren(input);
 
-                                input.addEventListener('keyup', () => {
-                                    if (column.search() !== this.value) {
-                                        column.search(input.value).draw();
-                                    }
+                                    input.addEventListener('keyup', () => {
+                                        if (column.search() !== this.value) {
+                                            column.search(input.value).draw();
+                                        }
+                                    });
                                 });
-                            });
-                    }
-                });
-            </script>
-            <script type="text/javascript">
-                $('#slimtest1').slimScroll({
-                    height: '250px'
-                });
-                $('#slimtest2').slimScroll({
-                    height: '250px'
-                });
-                $('#slimtest3').slimScroll({
-                    position: 'left',
-                    height: '250px',
-                    railVisible: true,
-                    alwaysVisible: true
-                });
-                $('#slimtest4').slimScroll({
-                    color: '#00f',
-                    size: '10px',
-                    height: '250px',
-                    alwaysVisible: true
-                });
-            </script>
-        </div>
-    }
-    </body>
-    
+                        }
+                    });
+                </script>
+                <script type="text/javascript">
+                    $('#slimtest1').slimScroll({
+                        height: '250px'
+                    });
+                    $('#slimtest2').slimScroll({
+                        height: '250px'
+                    });
+                    $('#slimtest3').slimScroll({
+                        position: 'left',
+                        height: '250px',
+                        railVisible: true,
+                        alwaysVisible: true
+                    });
+                    $('#slimtest4').slimScroll({
+                        color: '#00f',
+                        size: '10px',
+                        height: '250px',
+                        alwaysVisible: true
+                    });
+                </script>
+            </div>
+        }
+</body>
+
 </html>
