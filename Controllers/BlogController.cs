@@ -36,7 +36,7 @@ namespace BlogSitesi.Controllers
             {
                 Bloglar = unitOfWork.GetRepository<Blog>().GetAll().ToList(),
                 Kategoriler = unitOfWork.GetRepository<Kategori>().GetAll().ToList(),
-                 Kullanicilar = unitOfWork.GetRepository<Kullanici>().GetAll().ToList()
+                Kullanicilar = unitOfWork.GetRepository<Kullanici>().GetAll().ToList()
             };
 
             return View(viewModel);

@@ -36,7 +36,7 @@ namespace BlogSitesi.Controllers
         {
             try
             {
-                const int maxFileSize = 2 * 1024 * 1024; // 2 MB
+                const int maxFileSize = 2 * 1024 * 1024; 
                 var allowedExtensions = new[] { ".jpg", ".png", ".jpeg" };
 
                 List<Kategori> k = new List<Kategori>();
@@ -81,7 +81,7 @@ namespace BlogSitesi.Controllers
 
                         try
                         {
-                            Directory.CreateDirectory(Path.GetDirectoryName(path)); // Ensure the directory exists
+                            Directory.CreateDirectory(Path.GetDirectoryName(path)); 
                             resim.SaveAs(path);
                             blog.BlogResim = "/Content/Images/" + randomFileName;
                         }

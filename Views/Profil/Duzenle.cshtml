@@ -1,0 +1,104 @@
+﻿@using BlogSitesi.Data.Model
+@model BlogSitesi.ViewModels.BlogKategoriViewModel
+@{
+    ViewBag.Title = "Duzenle";
+    var blog = Model.Bloglar.First();
+}
+
+<h2><b>BLOG DÜZENLEME</b></h2>
+
+<div class="row">
+    <div class="col-sm-12">
+        <div class="white-box p-l-20 p-r-20">
+            <div class="row">
+                <div class="col-md-12">
+                    <form class="form-material form-horizontal" enctype="multipart/form-data" method="post" action="@Url.Action("GuncelleJson", "Profil")">
+                        <input type="hidden" id="BlogId" name="BlogId" value="@blog.BlogId" />
+
+                        <div class="form-group">
+                            <label class="col-md-12">Blog Başlığı</label>
+                            <div class="col-md-12">
+                                <input id="baslik" type="text" class="form-control form-control-line" name="Baslik" value="@blog.BlogAd">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-md-12">Blog Metni</label>
+                            <div class="col-md-12">
+                                <textarea id="metin" class="form-control" name="Metin" rows="5">@blog.BlogMetin</textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-12">Kullanıcı Seçiniz</label>
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <select id="kullanicilar" class="form-control" name="kullanicilar">
+                                       
+                                        <option value="@Request.Cookies["kullanici"]["KullaniciId"]">@Request.Cookies["kullanici"]["KullaniciAdi"]</option>
+                                        
+                                    </select>
+                                    <span class="input-group-btn">
+                                        <input type="button" id="kullaniciSec" class="btn btn-info" style="background-color: #405D72" value="Seç" />
+                                    </span>
+                                </div>
+                                <br />
+                                <div id="eklelenKullanici" class="form-group">
+                                    <label class="col-md-12" style="border: 2px solid #405D72; padding: 5px; display: inline-block; background-color: #405D72; color: white; text-align: center; width: fit-content;">Kullanıcı</label>
+                                    <br />
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-12">Kategori Seçiniz</label>
+                            <div class="col-sm-12">
+                                <div class="input-group">
+                                    <select id="kategoriler" class="form-control" name="kategoriler">
+                                        @foreach (var ktg in Model.Kategoriler)
+                                        {
+                                            <option value="@ktg.KategoriId">@ktg.KategoriAd</option>
+                                        }
+                                    </select>
+                                    <span class="input-group-btn">
+                                        <input type="button" id="kategoriSec" class="btn btn-info" style="background-color: #405D72" value="Seç" />
+                                    </span>
+                                </div>
+                                <br />
+                                <div id="eklenenKategoriler" class="form-group">
+                                    <label class="col-md-12" style="border: 2px solid #405D72; padding: 5px; display: inline-block; background-color: #405D72; color: white; text-align: center; width: fit-content;">Kategoriler</label>
+                                    <br />
+                                    <br />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label id="resimLabel" class="col-sm-12">Resim Yükle</label>
+                            <div class="col-sm-12">
+                                <div class="fileinput fileinput-new input-group" data-provides="fileinput">
+                                    <div class="form-control" data-trigger="fileinput" style="width: 100%; max-width: 500px; height: auto; object-fit: cover; ">
+                                        @if (!string.IsNullOrEmpty(blog.BlogResim))
+                                        {
+                                            <img style="max-width: 100%; height: auto; display: block; object-fit: cover;" src="@Url.Content(blog.BlogResim)" alt="Blog Resmi" />
+                                        }
+                                        <i class="glyphicon glyphicon-file fileinput-exists"></i>
+                                        <span class="fileinput-filename"></span>
+                                    </div>
+                                    <span class="input-group-addon btn btn-default btn-file">
+                                        <span class="fileinput-new">Dosya Seç</span>
+                                        <span class="fileinput-exists">Değiştir</span>
+                                        <input type="file" id="resim" name="Resim">
+                                    </span>
+                                    <a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput">Sil</a>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="submit" id="blogGuncelle" style="background-color: #405D72; color: white;" value="Kaydet" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

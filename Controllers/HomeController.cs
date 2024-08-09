@@ -17,8 +17,7 @@ namespace BlogSitesi.Controllers
         {
             unitOfWork = new UnitOfWork();
         }
-        // GET: Home
-
+      
    
         public ActionResult Index()
         {

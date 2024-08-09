@@ -323,7 +323,7 @@ $(document).on("click", "#giris", function () {
         dataType: 'Json',
         contentType: 'application/json;charset=utf-8',
         success: function (gelenDeg) {
-            console.log(gelenDeg); // Geri dönen cevabı kontrol edin
+            console.log(gelenDeg); 
             if (gelenDeg == "Başarılı") {
                 Swal.fire({ icon: "success", title: "Giriş Başarılı", text: "Yönlendiriliyorsunuz..." });
                 window.location.href = '/Blog/Index';
@@ -336,7 +336,7 @@ $(document).on("click", "#giris", function () {
             }
         },
         error: function (xhr, status, error) {
-            console.error(xhr.responseText); // Hata mesajını kontrol edin
+            console.error(xhr.responseText); 
             Swal.fire({ icon: "error", title: "HATA", text: "Hata..." });
         },
         complete: function () {
@@ -396,3 +396,117 @@ $(document).ready(function () {
     });
 });
 
+
+
+$(document).on("click", ".blogumuSil", function () {
+    var blogId = $(this).val();
+    var blogElement = $(this).closest(".blog-box");
+
+    $.ajax({
+        type: 'Post',
+        url: '/Profil/BlogumuSilJson',
+        data: { BlogId: blogId },
+        dataType: 'json',
+        success: function (data) {
+            if (data == "1") {
+                blogElement.remove();
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Blog Silindi',
+                    text: 'İşlem Başarıyla Gerçekleştirildi!'
+                });
+            }
+        },
+        error: function () {
+            Swal.fire({
+                icon: 'error',
+                title: 'Blog Silinemedi',
+                text: 'İşlem Gerçekleşmedi!'
+            });
+        }
+    });
+});
+
+
+$(document).on("click", "#blogGuncelle", function () {
+    var formData = new FormData();
+
+    formData.append("BlogId", $("#BlogId").val());
+    formData.append("baslik", $("#baslik").val());
+    formData.append("metin", $("#metin").val());
+
+    var kullaniciSecildi = false;
+    $("#eklelenKullanici div").each(function () {
+        var id = $(this).attr("id");
+        if (id) {
+            formData.append("kullanicilar[]", id);
+            kullaniciSecildi = true;
+        }
+    });
+
+    if (!kullaniciSecildi) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Kullanıcı Seçilmedi',
+            text: 'Lütfen bir kullanıcı seçin!'
+        });
+        return;
+    }
+
+    var kategoriSecildi = false;
+    $("#eklenenKategoriler div").each(function () {
+        var id = $(this).attr("id");
+        if (id) {
+            formData.append("kategoriler[]", id);
+            kategoriSecildi = true;
+        }
+    });
+
+    if (!kategoriSecildi) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Kategori Seçilmedi',
+            text: 'Lütfen bir kategori seçin!'
+        });
+        return;
+    }
+
+    var fileInput = document.getElementById("resim");
+    if (fileInput.files.length > 0) {
+        formData.append("resim", fileInput.files[0]);
+    } else {
+        Swal.fire({
+            icon: 'error',
+            title: 'Dosya Seçilmedi',
+            text: 'Lütfen bir dosya seçin!'
+        });
+        return;
+    }
+
+    $.ajax({
+        url: '/Profil/GuncelleJson',
+        type: 'POST',
+        data: formData,
+        processData: false,
+        contentType: false,
+
+        success: function (response) {
+            if (response.success) {
+                window.location.href = response.redirectUrl; 
+            } else {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Hata',
+                    text: response.message
+                });
+            }
+        },
+        error: function (xhr, status, error) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Blog Güncellenemedi',
+                text: 'İşlem Gerçekleşmedi! Hata: ' + xhr.responseText
+            });
+        }
+    });
+});

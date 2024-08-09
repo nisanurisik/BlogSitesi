@@ -33,7 +33,7 @@
     {
         var kullaniciAdi = Request.Cookies["kullanici"]["KullaniciAdi"];
         var kullaniciSoyadi = Request.Cookies["kullanici"]["KullaniciSoyadi"];
-        var kullaniciID = Request.Cookies["kullanici"]["KullaniciId"]; // Kullanıcı ID'sini alın
+        var kullaniciID = Request.Cookies["kullanici"]["KullaniciId"]; 
         <div class="preloader">
             <div class="cssload-speeding-wheel"></div>
         </div>
@@ -83,7 +83,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-user animated flipInY">
                                     <li>
-                                        <a href="#"><i class="ti-user"></i>Profilim</a>
+                                        <a href="@Url.Action("Index", "Profil")"><i class="ti-user"></i>Profilim</a>
                                     </li>
 
                                     <li>
@@ -121,7 +121,7 @@
                                 </a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="javascript:void(0)"><i class="ti-user"></i>Profilim</a>
+                                        <a href="@Url.Action("Index", "Profil")"><i class="ti-user"></i>Profilim</a>
                                     </li>
 
                                     <li>

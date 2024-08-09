@@ -18,6 +18,11 @@ namespace BlogSitesi
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
+            routes.MapRoute(
+            name: "Profile",
+            url: "Profil/{action}/{id}",
+            defaults: new { controller = "Profil", action = "Index", id = UrlParameter.Optional }
+        );
         }
     }
 }

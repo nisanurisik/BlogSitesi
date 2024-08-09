@@ -23,5 +23,10 @@ namespace BlogSitesi.Data.Model
 
         public virtual ICollection<Yorum> Yorumlar { get; set; }
         public virtual ICollection<Kategori> Kategoriler { get; set; }
+
+        public static implicit operator List<object>(Blog v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
